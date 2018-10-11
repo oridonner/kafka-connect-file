@@ -7,10 +7,10 @@ On _tab 1_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Ter
 Use latest [Sqream Developer Docker Image](http://gitlab.sq.l/DevOps/sqream-developer) for this part.<br />
 
 _Terminal 1:_  Build sqream persistent storage on Docker Testing Server:<br />
-`docker run --name=sqream_storage --rm  -v ~/kafka-sandbox:/mnt sqream:2.15-dev bash -c "./sqream/build/SqreamStorage -C -r /mnt/sqream_storage"`
+`docker run --name=sqream_storage --rm  -v $(pwd):/mnt sqream:2.15-dev bash -c "./sqream/build/SqreamStorage -C -r /mnt/sqream_storage"`
 
 _Terminal 2:_  Start sqreamd on Docker Testing Server:<br />
-`docker run --name=sqreamd -it --rm  -v ~/kafka-sandbox:/mnt sqream:2.15-dev bash -c "./sqream/build/sqreamd"`
+`docker run --name=sqreamd -it --rm  -v $(pwd):/mnt sqream:2.15-dev bash -c "./sqream/build/sqreamd"`
 
 _Terminal 3:_  Log into running **sqreamd** with Client Command:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master"`
