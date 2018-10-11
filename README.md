@@ -27,7 +27,7 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 # Kafka Cluster
 ### Updated SQream JDBC Connector
 In order to get the proper JDBC connector version, delete SQream JDBC connector from ***libs/***, if exists. <br />
-`rm SqreamJDBC.jar` or `rm sqream-jdbc-2.3.1-jar-with-dependencies.jar`<br />
+`rm libs/SqreamJDBC.jar` or `rm libs/sqream-jdbc-2.3.1-jar-with-dependencies.jar`<br />
 
 Copy SQream JDBC Connector from ***sqreamd*** container to ***libs/*** on host <br />
 `docker cp sqreamd:/home/sqream/sqream/build/SqreamJDBC.jar libs/`
