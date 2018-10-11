@@ -7,10 +7,10 @@ Start Kafka Broker on local machine:<br />
 `./bin/kafka-server-start.sh config/server.properties`
 
 ## Kafka Connect
-Start standalone mysql source connector. Load tpch tables from mysql database to kafka topic: 
+Start standalone mysql source connector. Load tpch tables from mysql database to kafka topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/mysql-source.properties`
 
-Start standalone sqream sink connector. Load data from kafka topic to sqream db:
+Start standalone sqream sink connector. Load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`
 
 # Sqream 
