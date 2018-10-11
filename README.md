@@ -1,12 +1,12 @@
 # Kafka Cluster
-## Kafka Broker
+### Kafka Broker
 Start Zookeeper Server:<br />
 `./bin/zookeeper-server-start config/zookeeper.properties`
 
 Start Kafka Broker on local machine:<br />
 `./bin/kafka-server-start.sh config/server.properties`
 
-## Kafka Connect
+### Kafka Connect
 Start standalone mysql source connector. Load tpch tables from mysql database to kafka topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/mysql-source.properties`
 
