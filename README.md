@@ -13,6 +13,7 @@ Start standalone mysql source connector. Load tpch tables from mysql database to
 Start standalone sqream sink connector. Load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`
 
+
 # Sqream 
 SSH to Docker Testing Server and Open 3 terminal windows on Terminator.<br />
 Use one terminal for managing the host, one for viewing sqreamd output (it runs on developer mode) and one for Client Command.<br />
