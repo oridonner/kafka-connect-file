@@ -1,7 +1,8 @@
+Clone repo from GitLab and enter into kafka-connector-debugger directory.
+
 # Sqream 
 
-SSH to Docker Testing Server and Open 3 terminal windows on Terminator.<br />
-Use terminal 1 for managing the host, terminal 2 for viewing sqreamd output (it runs on developer mode) and terminal 3 for Client Command.<br />
+Open 3 terminal windows on Terminator. _Terminal 1_ for managing the host, _Terminal 2_ for viewing sqreamd output (it runs on developer mode) and _Terminal 3_ for Client Command.<br />
 Use latest [Sqream Developer Docker Image](http://gitlab.sq.l/DevOps/sqream-developer) for this part.<br />
 
 _Terminal 1:_  Build sqream persistent storage on Docker Testing Server:<br />
