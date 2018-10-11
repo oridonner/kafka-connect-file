@@ -44,6 +44,8 @@ Start Kafka Broker on local machine:<br />
 Start standalone file source connector to load ***data/dbgen/customer.tbl** to kafka ***customer*** topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties`<br />
 
+Check if ***customer*** topic exists:<br />
+`./bin/kafka-topics.sh --zookeeper localhost:2181 --list`
 
 Check if data was loaded to kafka topic:<br />
 `./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic customer --from-beginning`<br />
