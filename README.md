@@ -1,6 +1,9 @@
 Clone repo from GitLab and enter into kafka-connector-debugger directory.
 Start Terminator and open 2 tabs, _tab 0_ for sqream _tab 1_ for kafka.
 
+# TPCH
+Create customer TPCH table with dbgen: 
+
 # Sqream 
 
 On _tab 0_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Terminal 2_ for viewing sqreamd output (it runs on developer mode) and _Terminal 3_ for Client Command.<br />
