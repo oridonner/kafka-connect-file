@@ -26,10 +26,10 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 
 # Kafka Cluster
 ### Updated SQream JDBC Connector
-In order to get the proper JDBC connector version, delete SQream JDBC connector from ***libs/***, if exists. <br />
+In order to get the proper JDBC connector version, delete SQream JDBC connector from **libs/**, if exists. <br />
 `rm libs/SqreamJDBC.jar` or `rm libs/sqream-jdbc-2.3.1-jar-with-dependencies.jar`<br />
 
-Copy SQream JDBC Connector from ***sqreamd*** container to ***libs/*** on host <br />
+Copy SQream JDBC Connector from **sqreamd** container to **libs/** on host <br />
 `docker cp sqreamd:/home/sqream/sqream/build/SqreamJDBC.jar libs/`
 
 ### Kafka Broker
@@ -41,11 +41,11 @@ Start Kafka Broker on local machine:<br />
 
 
 ### Kafka Connect
-Start standalone file source connector to load ***data/dbgen/customer.tbl** to kafka ***customer*** topic:<br />
+Start standalone file source connector to load **data/dbgen/customer.tbl** to kafka **customer** topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties`<br />
 
-Check if ***customer*** topic exists:<br />
-`./bin/kafka-topics.sh --zookeeper localhost:2181 --list`
+Check if **customer** topic exists:<br />
+`./bin/kafka-topics.sh --zookeeper localhost:2181 --list | grep customer`
 
 Check if data was loaded to kafka topic:<br />
 `./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic customer --from-beginning`<br />
