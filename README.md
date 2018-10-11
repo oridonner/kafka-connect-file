@@ -2,7 +2,10 @@ Clone repo from GitLab and enter into kafka-connector-debugger directory.
 Start Terminator and open 2 tabs, _tab 0_ for sqream _tab 1_ for kafka.
 
 # TPCH
-Create customer TPCH table with dbgen: 
+Create customer [TPCH](https://github.com/electrum/tpch-dbgen) table with dbgen: <br />
+`cd data/dbgen`<br />
+`./../../tpch/dbgen -s 0.1 -T c -f`<br />
+`cd -`
 
 # Sqream 
 
