@@ -1,7 +1,17 @@
 # Kafka Cluster
 ## Kafka Broker
+Start Zookeeper Server:<br />
+`./bin/zookeeper-server-start config/zookeeper.properties`
+
+Start Kafka Broker on local machine:<br />
+`./bin/kafka-server-start.sh config/server.properties`
 
 ## Kafka Connect
+Start standalone mysql source connector. Load tpch tables from mysql database to kafka topic: 
+`./bin/connect-standalone.sh config/connect-standalone.properties config/mysql-source.properties`
+
+Start standalone sqream sink connector. Load data from kafka topic to sqream db:
+`./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`
 
 # Sqream 
 SSH to Docker Testing Server and Open 3 terminal windows on Terminator.<br />
@@ -17,5 +27,7 @@ Start sqreamd on Docker Testing Server:<br />
 Log into running sqreamd with Client Command:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master"`
 
-Create tables on sqreeamd:
+Create tables on sqreeamd:<br />
+
+
 
