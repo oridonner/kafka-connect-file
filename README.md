@@ -14,7 +14,7 @@ _Terminal 3:_  Log into running **sqreamd** with Client Command:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master"`
 
 _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on **sqreeamd**:<br />
-`docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_sutomer_table.sql"`
+`docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_sutomer_table.sql"`
 
 # Kafka Cluster
 
