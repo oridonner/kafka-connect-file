@@ -7,13 +7,13 @@ Use latest [Sqream Developer Docker Image](http://gitlab.sq.l/DevOps/sqream-deve
 _Terminal 1:_ Build sqream persistent storage on Docker Testing Server:<br />
 `docker run --name=sqream_storage --rm  -v ~/kafka-sandbox:/mnt sqream:2.15-dev bash -c "./sqream/build/SqreamStorage -C -r /mnt/sqream_storage"`
 
-***Terminal 2: *** Start sqreamd on Docker Testing Server:<br />
+_Terminal 2:_ Start sqreamd on Docker Testing Server:<br />
 `docker run --name=sqreamd -it --rm  -v ~/kafka-sandbox:/mnt sqream:2.15-dev bash -c "./sqream/build/sqreamd"`
 
-***Terminal 3: *** Log into running **sqreamd** with Client Command:<br />
+_Terminal 3:_ Log into running **sqreamd** with Client Command:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master"`
 
-***Terminal 1: *** Prepare sqream db to get data from kafka topic, create tables on **sqreeamd**:<br />
+_Terminal 1:_ Prepare sqream db to get data from kafka topic, create tables on **sqreeamd**:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_sutomer_table.sql"`
 
 # Kafka Cluster
