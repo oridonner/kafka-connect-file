@@ -35,14 +35,14 @@ Start Kafka Broker on local machine:<br />
 
 
 ### Kafka Connect
-Start standalone mysql source connector to load tpch tables from mysql database to kafka topic:<br />
-`./bin/connect-standalone.sh config/connect-standalone.properties config/mysql-source.properties`<br />
+Start standalone file source connector to load ***data/dbgen/customer.tbl** to kafka ***customer*** topic:<br />
+`./bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties`<br />
 
 
 Check if data was loaded to kafka topic:<br />
-`./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic mysql.customer --from-beginning`<br />
+`./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic customer --from-beginning`<br />
 
-Stop standalone mysql source connector and start standalone sqream sink connector to load data from kafka topic to sqream db:<br />
+Stop standalone file source connector and start standalone sqream sink connector to load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`<br />
 
 
