@@ -25,6 +25,12 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 `docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_customer_table.sql"`
 
 # Kafka Cluster
+### SQream JDBC Connector
+In order to get the proper JDBC connector version, delete SQream JDBC connector from ***libs/***, if exists. <br />
+`rm SqreamJDBC.jar' or 'rm sqream-jdbc-2.3.1-jar-with-dependencies.jar'<br />
+
+Copy SQream JDBC Connector from ***sqreamd*** container to ***libs/*** on host <br />
+`docker cp sqreamd:/home/sqream/sqream/build/SqreamJDBC.jar libs/`
 
 ### Kafka Broker
 Start Zookeeper Server:<br />
