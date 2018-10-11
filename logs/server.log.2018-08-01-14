@@ -1,0 +1,7 @@
+[2018-08-01 14:01:43,968] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:11:43,968] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:21:43,968] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:31:43,968] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:41:43,968] INFO [GroupMetadataManager brokerId=0] Removed 0 expired offsets in 1 milliseconds. (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:51:43,968] INFO [GroupMetadataManager brokerId=0] Group console-consumer-56001 transitioned to Dead in generation 2 (kafka.coordinator.group.GroupMetadataManager)
+[2018-08-01 14:51:43,983] INFO [GroupMetadataManager brokerId=0] Removed 1 expired offsets in 16 milliseconds. (kafka.coordinator.group.GroupMetadataManager)

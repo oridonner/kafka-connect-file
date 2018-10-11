@@ -1,0 +1,1 @@
+[2018-07-23 15:04:24,637] INFO Got user-level KeeperException when processing sessionid:0x164c5f2b2f30000 type:setData cxid:0x896 zxid:0x98 txntype:-1 reqpath:n/a Error Path:/config/topics/sqream.login_test Error:KeeperErrorCode = NoNode for /config/topics/sqream.login_test (org.apache.zookeeper.server.PrepRequestProcessor)

@@ -1,0 +1,8 @@
+[2018-07-30 14:26:35,082] INFO Starting the log cleaner (kafka.log.LogCleaner)
+[2018-07-30 14:26:35,115] INFO [kafka-log-cleaner-thread-0]: Starting (kafka.log.LogCleaner)
+[2018-07-30 14:33:50,350] INFO The cleaning for partition tbl.login-0 is aborted and paused (kafka.log.LogCleaner)
+[2018-07-30 14:33:50,350] INFO Compaction for partition tbl.login-0 is resumed (kafka.log.LogCleaner)
+[2018-07-30 14:33:50,351] INFO The cleaning for partition tbl.login-0 is aborted (kafka.log.LogCleaner)
+[2018-07-30 14:34:20,633] INFO The cleaning for partition tbl.login-0 is aborted and paused (kafka.log.LogCleaner)
+[2018-07-30 14:34:20,633] INFO Compaction for partition tbl.login-0 is resumed (kafka.log.LogCleaner)
+[2018-07-30 14:34:20,633] INFO The cleaning for partition tbl.login-0 is aborted (kafka.log.LogCleaner)

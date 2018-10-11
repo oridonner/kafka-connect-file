@@ -1,0 +1,1 @@
+[2018-07-31 17:21:52,015] INFO Got user-level KeeperException when processing sessionid:0x164eaf04f960000 type:setData cxid:0x1ff zxid:0x11e txntype:-1 reqpath:n/a Error Path:/config/topics/mysql.login Error:KeeperErrorCode = NoNode for /config/topics/mysql.login (org.apache.zookeeper.server.PrepRequestProcessor)

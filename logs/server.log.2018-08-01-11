@@ -1,0 +1,5 @@
+[2018-08-01 11:53:40,066] INFO Accepted socket connection from /0:0:0:0:0:0:0:1:48914 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+[2018-08-01 11:53:40,070] INFO Client attempting to establish new session at /0:0:0:0:0:0:0:1:48914 (org.apache.zookeeper.server.ZooKeeperServer)
+[2018-08-01 11:53:40,077] INFO Established session 0x164f44ab9420001 with negotiated timeout 30000 for client /0:0:0:0:0:0:0:1:48914 (org.apache.zookeeper.server.ZooKeeperServer)
+[2018-08-01 11:53:40,110] INFO Processed session termination for sessionid: 0x164f44ab9420001 (org.apache.zookeeper.server.PrepRequestProcessor)
+[2018-08-01 11:53:40,125] INFO Closed socket connection for client /0:0:0:0:0:0:0:1:48914 which had sessionid 0x164f44ab9420001 (org.apache.zookeeper.server.NIOServerCnxn)
