@@ -24,10 +24,10 @@ Build sqream persistent storage on Docker Testing Server:<br />
 Start sqreamd on Docker Testing Server:<br />
 `docker run --name=sqreamd -it --rm  -v ~/kafka-sandbox:/mnt sqream:2.15-dev bash -c "./sqream/build/sqreamd"`
 
-Log into running sqreamd with Client Command:<br />
+Log into running ***sqreamd*** with Client Command:<br />
 `docker exec -it sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master"`
 
-Create tables on sqreeamd:<br />
+Create tables on ***sqreeamd***:<br />
 
 
 
