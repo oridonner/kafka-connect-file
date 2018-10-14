@@ -13,7 +13,7 @@ On _tab 0_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Ter
 Use latest [Sqream Developer Docker Image](http://gitlab.sq.l/DevOps/sqream-developer) for this part.<br />
 
 _Terminal 1:_  Build sqream persistent storage on Docker Testing Server:<br />
-`docker run --rm  -v $(pwd)/data:/mnt sqream:2.15-dev bash -c "./sqream/build/SqreamStorage -C -r /mnt/sqream_storage"`
+`docker run --rm  -p 5000:5000 -v $(pwd)/data:/mnt sqream:2.15-dev bash -c "./sqream/build/SqreamStorage -C -r /mnt/sqream_storage"`
 
 _Terminal 2:_  Start sqreamd on Docker Testing Server, mount sqream_storage and scripts directories:<br />
 `docker run --name=sqreamd -it --rm  -v $(pwd)/data:/mnt -v $(pwd)/scripts:/home/sqream/scripts sqream:2.15-dev bash -c "./sqream/build/sqreamd"`
