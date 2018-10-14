@@ -34,7 +34,7 @@ Copy SQream JDBC Connector from **sqreamd** container to **libs/** on host <br /
 
 ### Kafka Broker
 Start Zookeeper Server:<br />
-`./bin/zookeeper-server-start config/zookeeper.properties`
+`./bin/zookeeper-server-start.sh config/zookeeper.properties`
 
 Start Kafka Broker on local machine:<br />
 `./bin/kafka-server-start.sh config/server.properties`
