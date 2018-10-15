@@ -1,5 +1,8 @@
 Clone repo from GitLab and enter into kafka-connector-debugger directory.
-Start Terminator and open 2 tabs, _tab 0_ for sqream _tab 1_ for kafka.
+Start Terminator and open 2 tabs, _tab 0_ for sqream _tab 1_ for kafka.<bt />
+
+# Prerequisites
+Check for a compatible version of Kafka JDBC Connector (libs/kafka-connect-jdbc-4.1.1) with your Kafka version(kafka 1.1).
 
 # TPCH
 Create **customer.tbl** [TPCH](https://github.com/electrum/tpch-dbgen) table with dbgen: <br />
