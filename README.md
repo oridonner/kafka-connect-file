@@ -44,6 +44,9 @@ Start Kafka Broker on local machine:<br />
 
 
 ### Kafka Connect
+We will use Kafka Standalone connector for our dev environment.<br />
+
+#### Build File Source Connector
 Start standalone file source connector to load **data/dbgen/customer.tbl** to kafka **customer** topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties`<br />
 
@@ -53,6 +56,7 @@ Check if **customer** topic exists:<br />
 Check if data was loaded to kafka topic:<br />
 `./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic customer --from-beginning`<br />
 
+### Build SQream Sink Connector
 Stop standalone file source connector and start standalone sqream sink connector to load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`<br />
 
