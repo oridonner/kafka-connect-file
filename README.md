@@ -60,7 +60,7 @@ Check if data was loaded to kafka topic:<br />
 Stop standalone file source connector and start standalone sqream sink connector to load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`<br />
 
-# SQream Sink Connector fails
+### SQream Sink Connector fails
 
 Kafka's file connector is for dev purposes only, it loads data to kafka topic as string schema type, not as struct schema type:<br \/>   
 > {"schema":{"type":"string","optional":false},"payload":"13999|Customer#000013999|TBTzZcUDB10WY|18|28-589-560-2505|567040|HOUSEHOLD|s about the slyly bold pinto beans haggle against the furio"}<br />
