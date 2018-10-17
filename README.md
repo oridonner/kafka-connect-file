@@ -46,7 +46,7 @@ Start Kafka Broker on local machine:<br />
 ### Kafka Connect
 We will use Kafka Standalone connector for our dev environment.<br />
 
-##### Build File Source Connector
+##### Start File Source Connector
 Start standalone file source connector to load **data/dbgen/customer.tbl** to kafka **customer** topic:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties`<br />
 
@@ -56,11 +56,20 @@ Check if **customer** topic exists:<br />
 Check if data was loaded to kafka topic:<br />
 `./bin/kafka-console-consumer.sh --bootstrap-server=localhost:9092 --topic customer --from-beginning`<br />
 
-#### Build SQream Sink Connector
+#### Start SQream Sink Connector
 Stop standalone file source connector and start standalone sqream sink connector to load data from kafka topic to sqream db:<br />
 `./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-sink.properties`<br />
 
+# SQream Sink Connector fails
 
+Kafka's file connector is for dev purposes only, it loads data to kafka topic as string schema type, not as struct schema type:<br \/>   
+> {"schema":{"type":"string","optional":false},"payload":"13999|Customer#000013999|TBTzZcUDB10WY|18|28-589-560-2505|567040|HOUSEHOLD|s about the slyly bold pinto beans haggle against the furio"}<br />
+
+This developer encountered with the same [problem](https://stackoverflow.com/questions/45928768/kafka-connect-jdbc-sink-connector-not-working)<br \>
+
+
+Kafka Connect error message:<br/>
+> org.apache.kafka.connect.errors.ConnectException: Value schema must be of type Struct
 
 
 
