@@ -4,7 +4,7 @@ Streaming CSV data into _Kafka_ described in _Confluent's_ [blog bost](https://w
 # Create _TPCH_ sample data
 Create 1 GB of _TPCH_ data. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
 `cd data/tpch`  
-`./../dbgen -s 1`  
+`./../../dbgen -s 1`  
 
 # Build _kafka-connect-spooldir_ package
 kafka-connect-spooldir applies a supplied schema to CSV file.  
