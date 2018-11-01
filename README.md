@@ -42,7 +42,7 @@ Start Kafka Broker on local machine:
 `./bin/kafka-server-start.sh config/server.properties`  
 
 ### _SpoolDir Source Connector_
-We will import **customer** table into **customer** topic. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
+We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
 `./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
 
 Start _SpoolDir Source Connector_ in a stanalone mode:  
