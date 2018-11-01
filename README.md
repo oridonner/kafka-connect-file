@@ -23,6 +23,7 @@ Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here]
 
 
 # Start SQream
+We will start _Sqream_ in a developer mode over _Docker_ not _docker compose_ for debugging reasons.  
 On _tab 0_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Terminal 2_ for viewing sqreamd output (it runs on developer mode) and _Terminal 3_ for Client Command.  
 Use latest [Sqream Developer Docker Image](http://gitlab.sq.l/DevOps/sqream-developer) for this part.  
 
