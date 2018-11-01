@@ -76,7 +76,7 @@ Create _SpoolDir Source Connector_ via REST API call to _kafka connect_ listens 
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
     "input.file.pattern": "^customer.tbl$",
     "input.path": "/tmp/source",
-    "finished.path": "/tmp/finished",
+    "finished.path": "/tmp/finish",
     "error.path": "/tmp/error",
     "halt.on.error": "false",
     "csv.separator.char": 124,
