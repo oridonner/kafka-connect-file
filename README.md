@@ -93,8 +93,7 @@ Check if connector was created:
 `curl localhost:8083/connectors | jq`  
 
 Start a _Kafka Consumer_ listens to **customer** topic:  
-`./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic customer --from-beginning`  
-On _Kafka 2.0.0_ use `--bootstrap-server localhost:9092` instead of `--zookeeper` flag.  
+`./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning`  
 
 ### Create _SQream Sink Connector_
 Start _SQream Sink Connector_ in a standalone mode, first make sure to stop _Kafka Connect_ with **CRTL C**:
