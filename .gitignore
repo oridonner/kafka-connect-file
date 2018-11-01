@@ -1,6 +1,6 @@
 **/*.tbl
 **/*.*.swp
 **/*.log
-**/*.logs/
+**/logs
 data/sqream_storage/
 
