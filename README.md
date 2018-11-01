@@ -2,9 +2,9 @@ Streaming CSV data into _Kafka_ described in _Confluent's_ [blog bost](https://w
 **data** directory keeps **tpch** data and **sqream_storage** data.  
 
 # Create _TPCH_ sample data
-Create 1 GB of _TPCH_ data. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
+Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
 `cd data/tpch`  
-`./../../tpch/dbgen -s 1`  
+`./../../tpch/dbgen -s 1 -T c`  
 
 # Build _kafka-connect-spooldir_ package
 [kafka-connect-spooldir](https://github.com/jcustenborder/kafka-connect-spooldir) applies a supplied schema to CSV file.  
@@ -35,18 +35,19 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 `docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_customer_table.sql"`  
 
 ### Create table on _SQream_
-_Kafka 2.0.0_ is case insensitive:  
-> CREATE TABLE customer    (  
-                            CUSTKEY           BIGINT,  
-                            NAME              NVARCHAR(100),  
-                            ADDRESS           NVARCHAR(100),  
+
+` DROP TABLE customer;`  
+` CREATE TABLE customer    (  
+                            CUSTKEY           BIGINT,    
+                            NAME              NVARCHAR(100),    
+                            ADDRESS           NVARCHAR(100),    
                             NATIONKEY         BIGINT,  
                             PHONE             NVARCHAR(100),    
                             ACCTBAL           NVARCHAR(100),  
                             MKTSEGMENT        NVARCHAR(100),  
                             COMMENT           NVARCHAR(100)  
                         );  
-
+`
 # Start _Kafka Broker_  
 Start _Zookeeper_ Server:  
 `./bin/zookeeper-server-start.sh config/zookeeper.properties`  
@@ -54,6 +55,7 @@ Start _Zookeeper_ Server:
 Start _Kafka Broker_ on local machine:  
 `./bin/kafka-server-start.sh config/server.properties`  
 
+# Start _Kafka Connect_  
 ### _SpoolDir Source Connector_
 We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
 `./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
@@ -64,6 +66,14 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
 Start a _Kafka Consumer_ listens to **customer** topic:  
 `./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic customer --from-beginning`  
 On _Kafka 2.0.0_ use `--bootstrap-server localhost:9092` instead of `--zookeeper` flag.  
+
+### Create _SQream Sink Connector_
+Start _SQream Sink Connector_ in a standalone mode, first make sure to stop _Kafka Connect_ with **CRTL C**:
+`./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-spooldir-sink.properties`  
+
+### Run a full pipeline
+Start both _Spooldir Source Connector_ and  _SQream Sink Connector_ in a stanalone mode, this will create a full pipeline from CSV file to _SQream_.  
+`./bin/connect-standalone.sh config/connect-standalone.properties config/connect-spooldir-source.properties config/sqream-spooldir-sink.properties`  
 
 
 
