@@ -66,8 +66,7 @@ Before starting the connector check existing topics:
 If **customer** topic exists, delete it:  
 `docker run --net=kafka-cluster --rm confluentinc/cp-kafka:5.0.0 kafka-topics --zookeeper zookeeper:32181 --delete --topic customer` 
  
-Create _Twitter Source Connector_ via REST API call to _kafka connect_ listens on 8083 port:  
-Start _SpoolDir Source Connector_ in a stanalone mode:  
+Create _SpoolDir Source Connector_ via REST API call to _kafka connect_ listens on 8083 port:  
 `curl -i -X POST -H "Accept:application/json" \
     -H  "Content-Type:application/json" http://localhost:8083/connectors/ \
     -d '{
