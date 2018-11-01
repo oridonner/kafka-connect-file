@@ -36,7 +36,7 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 
 ### Create table on _SQream_
 _Kafka 2.0.0_ is case insensitive:  
-> CREATE TABLE twitter    (  
+> CREATE TABLE customer    (  
                             CUSTKEY           BIGINT,  
                             NAME              NVARCHAR(100),  
                             ADDRESS           NVARCHAR(100),  
