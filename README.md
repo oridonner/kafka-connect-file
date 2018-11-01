@@ -39,7 +39,7 @@ _Kafka 2.0.0_ is case insensitive:
 
 ` DROP TABLE customer;`  
 ` CREATE TABLE customer    (  
-                            CUSTKEY           BIGINT,`    
+                            CUSTKEY           BIGINT,    
                             NAME              NVARCHAR(100),    
                             ADDRESS           NVARCHAR(100),    
                             NATIONKEY         BIGINT,  
