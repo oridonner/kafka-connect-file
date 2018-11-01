@@ -1,4 +1,5 @@
 **/*.tbl
 **/*.*.swp
 **/*.log
+**/sqream_storage/*.*
 
