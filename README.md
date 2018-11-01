@@ -34,4 +34,21 @@ _Terminal 3:_  Log into running **sqreamd** with Client Command:
 _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on **sqreeamd**:  
 `docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_customer_table.sql"`  
 
-# Start _Kafka Cluster_
+# Start _Kafka Broker_  
+Start Zookeeper Server:  
+`./bin/zookeeper-server-start.sh config/zookeeper.properties`  
+
+Start Kafka Broker on local machine:  
+`./bin/kafka-server-start.sh config/server.properties`  
+
+### _SpoolDir Source Connector_
+We will import **customer** table into **customer** topic. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
+`./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
+
+Start _SpoolDir Source Connector_ in a stanalone mode:  
+`./bin/connect-standalone.sh config/connect-standalone.properties config/connect-spooldir-source.properties`  
+
+Start a _Kafka Consumer_ listens to **customer** topic:  
+`./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic customer --from-beginning`  
+On _Kafka 2.0.0_ use `--bootstrap-server localhost:9092` instead of `--zookeeper` flag  
+
