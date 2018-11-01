@@ -35,10 +35,10 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 `docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_customer_table.sql"`  
 
 # Start _Kafka Broker_  
-Start Zookeeper Server:  
+Start _Zookeeper_ Server:  
 `./bin/zookeeper-server-start.sh config/zookeeper.properties`  
 
-Start Kafka Broker on local machine:  
+Start _Kafka Broker_ on local machine:  
 `./bin/kafka-server-start.sh config/server.properties`  
 
 ### _SpoolDir Source Connector_
