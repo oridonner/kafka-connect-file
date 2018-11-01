@@ -37,11 +37,11 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 ### Create table on _SQream_
 _Kafka 2.0.0_ is case insensitive:  
 
-
-` CREATE TABLE customer    (`  
-                            `CUSTKEY           BIGINT,`    
-                            `NAME              NVARCHAR(100),`    
-                            `ADDRESS           NVARCHAR(100),`    
+` DROP TABLE customer;`  
+` CREATE TABLE customer    (  
+                            CUSTKEY           BIGINT,`    
+                            NAME              NVARCHAR(100),    
+                            ADDRESS           NVARCHAR(100),    
                             NATIONKEY         BIGINT,  
                             PHONE             NVARCHAR(100),    
                             ACCTBAL           NVARCHAR(100),  
