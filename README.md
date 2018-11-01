@@ -1,4 +1,4 @@
-Streaming CSV data into _Kafka_ described in _Confluent's_ [blog bost](https://www.confluent.io/blog/ksql-in-action-enriching-csv-events-with-data-from-rdbms-into-AWS/).  
+Building CSV SQream Pipeline over _Apache Kafka_ with _Schema Registry_ inspired by this [blog bost](https://www.confluent.io/blog/ksql-in-action-enriching-csv-events-with-data-from-rdbms-into-AWS/).  
 **data** directory keeps **tpch** data and **sqream_storage** data.  
 
 # Prerequisites
