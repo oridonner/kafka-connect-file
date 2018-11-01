@@ -34,6 +34,19 @@ _Terminal 3:_  Log into running **sqreamd** with Client Command:
 _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on **sqreeamd**:  
 `docker exec sqreamd bash -c "./sqream/build/ClientCmd --user=sqream --password=sqream -d master -f scripts/sqream_customer_table.sql"`  
 
+### Create table on _SQream_
+_Kafka 2.0.0_ is case insensitive:  
+> CREATE TABLE twitter    (  
+                            CUSTKEY           BIGINT,  
+                            NAME              NVARCHAR(100),  
+                            ADDRESS           NVARCHAR(100),  
+                            NATIONKEY         BIGINT,  
+                            PHONE             NVARCHAR(100),    
+                            ACCTBAL           NVARCHAR(100),  
+                            MKTSEGMENT        NVARCHAR(100),  
+                            COMMENT           NVARCHAR(100)  
+                        );  
+
 # Start _Kafka Broker_  
 Start _Zookeeper_ Server:  
 `./bin/zookeeper-server-start.sh config/zookeeper.properties`  
@@ -51,6 +64,8 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
 Start a _Kafka Consumer_ listens to **customer** topic:  
 `./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic customer --from-beginning`  
 On _Kafka 2.0.0_ use `--bootstrap-server localhost:9092` instead of `--zookeeper` flag.  
+
+
 
 
 
