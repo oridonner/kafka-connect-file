@@ -55,13 +55,36 @@ Start _Zookeeper_ Server:
 Start _Kafka Broker_ on local machine:  
 `./bin/kafka-server-start.sh config/server.properties`  
 
-# Start _Kafka Connect_  
+# Start _Kafka Connect_
+Start _Kafka Connect_ in a distributed mode:  
+`./bin/connect-distributed.sh config/connect-distributed.properties`  
+
+Check if _Kafka Connect_ is up:  
+`curl localhost:8083/`  
+
 ### _SpoolDir Source Connector_
 We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
 `./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
 
 Start _SpoolDir Source Connector_ in a stanalone mode:  
-`./bin/connect-standalone.sh config/connect-standalone.properties config/connect-spooldir-source.properties`  
+`curl -i -X POST -H "Accept:application/json" \
+    -H  "Content-Type:application/json" http://localhost:8083/connectors/ \
+    -d '{
+  "name": "csv-source-orders",
+  "config": {
+    "tasks.max": "1",
+    "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
+    "input.file.pattern": "orders.tbl",
+    "input.path": "/tmp/source/",
+    "finished.path": "/tmp/finished/",
+    "error.path": "/tmp/error/",
+    "halt.on.error": "false",
+    "topic": "orders",
+    "value.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Value\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"o_orderkey\":{\"type\":\"INT64\",\"isOptional\":true},\"o_custkey\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderstatus\":{\"type\":\"STRING\",\"isOptional\":true},\"o_totalprice\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderdate\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderpriority\":{\"type\":\"STRING\",\"isOptional\":true},\"o_clerk\":{\"type\":\"STRING\",\"isOptional\":true},\"o_shippriority\":{\"type\":\"STRING\",\"isOptional\":true},\"o_comment\":{\"type\":\"STRING\",\"isOptional\":true}}}",
+    "key.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Key\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"o_orderkey\":{\"type\":\"STRING\",\"isOptional\":true}}}",
+    "csv.first.row.as.header": "true"
+  }
+}'`  
 
 Start a _Kafka Consumer_ listens to **customer** topic:  
 `./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic customer --from-beginning`  
