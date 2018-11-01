@@ -70,19 +70,19 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
 `curl -i -X POST -H "Accept:application/json" \
     -H  "Content-Type:application/json" http://localhost:8083/connectors/ \
     -d '{
-  "name": "csv-source-orders",
+  "name": "csv-source-customer",
   "config": {
     "tasks.max": "1",
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
-    "input.file.pattern": "orders.tbl",
-    "input.path": "/tmp/source/",
-    "finished.path": "/tmp/finished/",
-    "error.path": "/tmp/error/",
+    "input.file.pattern": "customer.tbl",
+    "input.path": "/home/sqream/kafka/file-sqream-pipeline/data/source/",
+    "finished.path": "/home/sqream/kafka/file-sqream-pipeline/data/finished",
+    "error.path": "/home/sqream/kafka/file-sqream-pipeline/data/error/",
     "halt.on.error": "false",
-    "topic": "orders",
-    "value.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Value\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"o_orderkey\":{\"type\":\"INT64\",\"isOptional\":true},\"o_custkey\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderstatus\":{\"type\":\"STRING\",\"isOptional\":true},\"o_totalprice\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderdate\":{\"type\":\"STRING\",\"isOptional\":true},\"o_orderpriority\":{\"type\":\"STRING\",\"isOptional\":true},\"o_clerk\":{\"type\":\"STRING\",\"isOptional\":true},\"o_shippriority\":{\"type\":\"STRING\",\"isOptional\":true},\"o_comment\":{\"type\":\"STRING\",\"isOptional\":true}}}",
-    "key.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Key\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"o_orderkey\":{\"type\":\"STRING\",\"isOptional\":true}}}",
-    "csv.first.row.as.header": "true"
+    "topic": "customer",
+    "value.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Value\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"CUSTKEY\":{\"type\":\"INT64\",\"isOptional\":true},\"NAME\":{\"type\":\"STRING\",\"isOptional\":true},\"ADDRESS\":{\"type\":\"STRING\",\"isOptional\":true},\"NATIONKEY\":{\"type\":\"INT64\",\"isOptional\":true},\"PHONE\":{\"type\":\"STRING\",\"isOptional\":true},\"ACCTBAL\":{\"type\":\"STRING\",\"isOptional\":true},\"MKTSEGMENT\":{\"type\":\"STRING\",\"isOptional\":true},\"COMMENT\":{\"type\":\"STRING\",\"isOptional\":true}}}",
+    "key.schema": "{\"name\":\"com.github.jcustenborder.kafka.connect.model.Key\",\"type\":\"STRUCT\",\"isOptional\":false,\"fieldSchemas\":{\"CUSTKEY\":{\"type\":\"INT64\",\"isOptional\":true}}}",
+    "csv.first.row.as.header": "false"
   }
 }'`  
 
