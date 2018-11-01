@@ -103,9 +103,8 @@ To restart connector:
 Delete connector:  
 `curl -X DELETE localhost:8083/connectors/csv-source-customer`  
 
-### Check _customer_ topic
-Start a _Kafka Consumer_ listens to **customer** topic:  
-`./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning`  
+Read data from _customer_ topic with _Avro_ consumer, pay attention to the `--property` flag added at the end, it is required when running _kafka-avro-console-consumer_ over local _docker_ network:  
+`docker run --net=kafka-cluster --rm confluentinc/cp-schema-registry:5.0.0 kafka-avro-console-consumer --bootstrap-server broker-1:29092 --topic customer --from-beginning --property schema.registry.url="http://schema-registry:8081"`  
 
 ### Create _SQream Sink Connector_
 `echo '{"name":"sqream-csv-sink","config":{"connector.class":"JdbcSinkConnector","connection.url":"jdbc:Sqream://192.168.0.212:5000/master","connection.user":"sqream","connection.password":"sqream","tasks.max":"1","topics":"customer","insert.mode":"insert","table.name.format":"customer","fields.whitelist":"CUSTKEY,NAME,ADDRESS,NATIONKEY,PHONE,ACCTBAL,MKTSEGMENT,COMMENT"}}' | curl -X POST -d @- http://localhost:8083/connectors --header "content-Type:application/json"`  
