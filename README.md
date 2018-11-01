@@ -2,8 +2,8 @@ Streaming CSV data into _Kafka_ described in _Confluent's_ [blog bost](https://w
 **data** directory keeps **tpch** data and **sqream_storage** data.  
 
 # Prerequisites
-Build _kafka-connect-spooldir_ package. [kafka-connect-spooldir](https://github.com/jcustenborder/kafka-connect-spooldir) applies a supplied schema to CSV file.  
-
+### _kafka-connect-spooldir package
+[kafka-connect-spooldir](https://github.com/jcustenborder/kafka-connect-spooldir) applies a supplied schema to CSV file.  
 Clone project:  
 `git clone https://github.com/jcustenborder/kafka-connect-spooldir`  
 `cd kafka-connect-spooldir`  
@@ -11,7 +11,10 @@ Clone project:
 Build package with _Maven_:  
 `mvn clean package -DskipTests`  
 
-Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/**  to **kafka_2.11-2.0.0/libs**  
+Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/** to local **kafka_2.11-2.0.0/libs**  
+
+### SQream jdbc package
+Copy latest **SqreamJDBC.jar** to to local **kafka_2.11-2.0.0/libs**  
 
 # Create _TPCH_ sample data
 Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
