@@ -1,6 +1,0 @@
-[2018-11-01 10:20:03,791] INFO Accepted socket connection from /127.0.0.1:51440 (org.apache.zookeeper.server.NIOServerCnxnFactory)
-[2018-11-01 10:20:03,793] INFO Client attempting to establish new session at /127.0.0.1:51440 (org.apache.zookeeper.server.ZooKeeperServer)
-[2018-11-01 10:20:03,811] INFO Established session 0x100720b7951000b with negotiated timeout 30000 for client /127.0.0.1:51440 (org.apache.zookeeper.server.ZooKeeperServer)
-[2018-11-01 10:20:03,855] INFO Processed session termination for sessionid: 0x100720b7951000b (org.apache.zookeeper.server.PrepRequestProcessor)
-[2018-11-01 10:20:03,869] INFO Closed socket connection for client /127.0.0.1:51440 which had sessionid 0x100720b7951000b (org.apache.zookeeper.server.NIOServerCnxn)
-[2018-11-01 10:23:38,572] INFO Got user-level KeeperException when processing sessionid:0x100720b79510000 type:setData cxid:0x167 zxid:0x338 txntype:-1 reqpath:n/a Error Path:/config/topics/customer Error:KeeperErrorCode = NoNode for /config/topics/customer (org.apache.zookeeper.server.PrepRequestProcessor)

@@ -1,3 +1,0 @@
-[2018-11-01 10:20:03,863] INFO The cleaning for partition customer-0 is aborted and paused (kafka.log.LogCleaner)
-[2018-11-01 10:20:03,863] INFO Compaction for partition customer-0 is resumed (kafka.log.LogCleaner)
-[2018-11-01 10:20:03,863] INFO The cleaning for partition customer-0 is aborted (kafka.log.LogCleaner)
