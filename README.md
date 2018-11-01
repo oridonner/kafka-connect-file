@@ -1,13 +1,8 @@
 Streaming CSV data into _Kafka_ described in _Confluent's_ [blog bost](https://www.confluent.io/blog/ksql-in-action-enriching-csv-events-with-data-from-rdbms-into-AWS/).  
 **data** directory keeps **tpch** data and **sqream_storage** data.  
 
-# Create _TPCH_ sample data
-Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
-`cd data/tpch`  
-`./../../tpch/dbgen -s 1 -T c`  
-
-# Build _kafka-connect-spooldir_ package
-[kafka-connect-spooldir](https://github.com/jcustenborder/kafka-connect-spooldir) applies a supplied schema to CSV file.  
+# Prerequisites
+Build _kafka-connect-spooldir_ package. [kafka-connect-spooldir](https://github.com/jcustenborder/kafka-connect-spooldir) applies a supplied schema to CSV file.  
 
 Clone project:  
 `git clone https://github.com/jcustenborder/kafka-connect-spooldir`  
@@ -17,6 +12,12 @@ Build package with _Maven_:
 `mvn clean package -DskipTests`  
 
 Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/**  to **kafka_2.11-2.0.0/libs**  
+
+# Create _TPCH_ sample data
+Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
+`cd data/tpch`  
+`./../../tpch/dbgen -s 1 -T c`  
+
 
 # Start SQream
 On _tab 0_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Terminal 2_ for viewing sqreamd output (it runs on developer mode) and _Terminal 3_ for Client Command.  
