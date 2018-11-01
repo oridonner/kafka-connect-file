@@ -78,7 +78,7 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
   "config": {
     "tasks.max": "1",
     "connector.class": "com.github.jcustenborder.kafka.connect.spooldir.SpoolDirCsvSourceConnector",
-    "input.file.pattern": "customer.tbl",
+    "input.file.pattern": "^customer.tbl$",
     "input.path": "/home/sqream/kafka/file-sqream-pipeline/data/tpch",
     "finished.path": "/home/sqream/kafka/file-sqream-pipeline/data/finished",
     "error.path": "/home/sqream/kafka/file-sqream-pipeline/data/error",
