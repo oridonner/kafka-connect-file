@@ -66,7 +66,7 @@ Check if _Kafka Connect_ is up:
 Check available connector plugins:  
 `curl localhost:8083/connector-plugins | jq`  
 
-### _SpoolDir Source Connector_
+### Build _SpoolDir Source Connector_
 We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
 `./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
 
