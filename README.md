@@ -57,13 +57,16 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 Create _Docker_ local network:   
 `docker network create kafka-cluster`  
 `docker-compose up`  
-This command will start _sqreamd_, _zookeeper_, 2 _kafka_ brokers (broker-1, broker-2), _schema registry_, _kafka connect_.  
-You can test _kafka cluster_ using this [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md)  
+This command will start _sqreamd_, _zookeeper_, 2 _kafka_ brokers (broker-1, broker-2), _schema registry_, _kafka connect_. You can test _kafka cluster_ using this [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md)  
 
 ### Create _SpoolDir Source Connector_
-We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
-`./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
+Before starting the connector check existing topics:  
+`docker run --net=kafka-cluster --rm confluentinc/cp-kafka:5.0.0 kafka-topics --zookeeper zookeeper:32181 --list`  
 
+If **customer** topic exists, delete it:  
+`docker run --net=kafka-cluster --rm confluentinc/cp-kafka:5.0.0 kafka-topics --zookeeper zookeeper:32181 --delete --topic customer` 
+ 
+Create _Twitter Source Connector_ via REST API call to _kafka connect_ listens on 8083 port:  
 Start _SpoolDir Source Connector_ in a stanalone mode:  
 `curl -i -X POST -H "Accept:application/json" \
     -H  "Content-Type:application/json" http://localhost:8083/connectors/ \
