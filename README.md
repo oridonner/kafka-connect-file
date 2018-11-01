@@ -95,7 +95,7 @@ Check if connector was created:
 `curl localhost:8083/connectors | jq`  
 
 Check connector's status:  
-`curl localhost:8083/connectors/csv-source-customer/status`  
+`curl localhost:8083/connectors/csv-source-customer/status | jq`  
 
 ### Manage connector
 Pause connector:  
@@ -115,16 +115,15 @@ Start a _Kafka Consumer_ listens to **customer** topic:
 `echo '{"name":"sqream-csv-sink","config":{"connector.class":"JdbcSinkConnector","connection.url":"jdbc:Sqream://192.168.0.212:5000/master","connection.user":"sqream","connection.password":"sqream","tasks.max":"1","topics":"customer","insert.mode":"insert","table.name.format":"customer","fields.whitelist":"CUSTKEY,NAME,ADDRESS,NATIONKEY,PHONE,ACCTBAL,MKTSEGMENT,COMMENT"}}' | curl -X POST -d @- http://localhost:8083/connectors --header "content-Type:application/json"`  
 
 Check if connector was created:  
-`curl localhost:8083/connectors`  
+`curl localhost:8083/connectors | jq`  
 
 
 Pause connector:  
-`curl -X PUT localhost:8083/connectors/sqream-sink/pause`  
+`curl -X PUT localhost:8083/connectors/sqream-csv-sink/pause`  
 
 To restart connector:  
-`curl -X PUT localhost:8083/connectors/sqream-sink/resume`  
+`curl -X PUT localhost:8083/connectors/sqream-csv-sink/resume`  
 
 Delete connector:  
-`curl -X DELETE localhost:8083/connectors/sqream-sink`  
-
+`curl -X DELETE localhost:8083/connectors/sqream-csv-sink`  
 
