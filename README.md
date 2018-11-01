@@ -36,7 +36,9 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 
 ### Create table on _SQream_
 _Kafka 2.0.0_ is case insensitive:  
-> CREATE TABLE customer    (  
+
+
+` CREATE TABLE customer    (  
                             CUSTKEY           BIGINT,  
                             NAME              NVARCHAR(100),  
                             ADDRESS           NVARCHAR(100),  
@@ -46,7 +48,7 @@ _Kafka 2.0.0_ is case insensitive:
                             MKTSEGMENT        NVARCHAR(100),  
                             COMMENT           NVARCHAR(100)  
                         );  
-
+`
 # Start _Kafka Broker_  
 Start _Zookeeper_ Server:  
 `./bin/zookeeper-server-start.sh config/zookeeper.properties`  
