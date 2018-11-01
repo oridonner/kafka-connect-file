@@ -16,7 +16,7 @@ Clone project:
 Build package with _Maven_:  
 `mvn clean package -DskipTests`  
 
-Required **jar** files path is **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/**  
+Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/**  to **kafka_2.11-2.0.0/libs**  
 
 # Start SQream
 On _tab 0_ open 3 new terminal windows. _Terminal 1_ for managing the host, _Terminal 2_ for viewing sqreamd output (it runs on developer mode) and _Terminal 3_ for Client Command.  
