@@ -2,5 +2,5 @@
 **/*.*.swp
 **/*.log
 **/logs
-data/sqream_storage/
+**/sqream_storage/
 
