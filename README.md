@@ -66,7 +66,7 @@ Check if _Kafka Connect_ is up:
 Check available connector plugins:  
 `curl localhost:8083/connector-plugins | jq`  
 
-### Build _SpoolDir Source Connector_
+### Create _SpoolDir Source Connector_
 We will import **customer table** into **customer topic**. Make sure topic is empty, if it exists data will be added to it. If required delete it with this command:  
 `./bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic customer`  
 
@@ -94,6 +94,9 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
 Check if connector was created:  
 `curl localhost:8083/connectors | jq`  
 
+Check connector's status:  
+`curl localhost:8083/connectors/csv-source-customer/status`  
+
 ### Manage connector
 Pause connector:  
 `curl -X PUT localhost:8083/connectors/csv-source-customer/pause`  
@@ -104,19 +107,24 @@ To restart connector:
 Delete connector:  
 `curl -X DELETE localhost:8083/connectors/csv-source-customer`  
 
-
+### Check _customer_ topic
 Start a _Kafka Consumer_ listens to **customer** topic:  
 `./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning`  
 
 ### Create _SQream Sink Connector_
-Start _SQream Sink Connector_ in a standalone mode, first make sure to stop _Kafka Connect_ with **CRTL C**:
-`./bin/connect-standalone.sh config/connect-standalone.properties config/sqream-spooldir-sink.properties`  
+`echo '{"name":"sqream-csv-sink","config":{"connector.class":"JdbcSinkConnector","connection.url":"jdbc:Sqream://192.168.0.212:5000/master","connection.user":"sqream","connection.password":"sqream","tasks.max":"1","topics":"customer","insert.mode":"insert","table.name.format":"customer","fields.whitelist":"CUSTKEY,NAME,ADDRESS,NATIONKEY,PHONE,ACCTBAL,MKTSEGMENT,COMMENT"}}' | curl -X POST -d @- http://localhost:8083/connectors --header "content-Type:application/json"`  
 
-### Run a full pipeline
-Start both _Spooldir Source Connector_ and  _SQream Sink Connector_ in a stanalone mode, this will create a full pipeline from CSV file to _SQream_.  
-`./bin/connect-standalone.sh config/connect-standalone.properties config/connect-spooldir-source.properties config/sqream-spooldir-sink.properties`  
+Check if connector was created:  
+`curl localhost:8083/connectors`  
 
 
+Pause connector:  
+`curl -X PUT localhost:8083/connectors/sqream-sink/pause`  
 
+To restart connector:  
+`curl -X PUT localhost:8083/connectors/sqream-sink/resume`  
+
+Delete connector:  
+`curl -X DELETE localhost:8083/connectors/sqream-sink`  
 
 
