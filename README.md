@@ -94,6 +94,17 @@ Start _SpoolDir Source Connector_ in a stanalone mode:
 Check if connector was created:  
 `curl localhost:8083/connectors | jq`  
 
+### Manage connector
+Pause connector:  
+`curl -X PUT localhost:8083/connectors/csv-source-customer/pause`  
+
+To restart connector:  
+`curl -X PUT localhost:8083/connectors/csv-source-customer/resume`  
+
+Delete connector:  
+`curl -X DELETE localhost:8083/connectors/csv-source-customer`  
+
+
 Start a _Kafka Consumer_ listens to **customer** topic:  
 `./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic customer --from-beginning`  
 
