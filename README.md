@@ -112,6 +112,9 @@ Read data from _customer_ topic with _Avro_ consumer, pay attention to the `--pr
 Check if connector was created:  
 `curl localhost:8083/connectors | jq`  
 
+Check connector's status:  
+`curl localhost:8083/connectors/sqream-csv-sink/status | jq` 
+
 
 Pause connector:  
 `curl -X PUT localhost:8083/connectors/sqream-csv-sink/pause`  
