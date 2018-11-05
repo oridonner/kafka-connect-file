@@ -31,12 +31,20 @@ services:
       - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:32181'
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:32181"
       KAFKA_LISTENERS: PLAINTEXT://broker-1:29092,EXTERNAL://:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker-1:29092,EXTERNAL://:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+      KAFKA_METRIC_REPORTERS: "io.confluent.metrics.reporter.ConfluentMetricsReporter"
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: "broker-1:9092"
+      CONFLUENT_METRICS_REPORTER_TOPIC_CREATE: "false"
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
+      CONFLUENT_METRICS_REPORTER_MAX_REQUEST_SIZE: 10485760
+      KAFKA_JMX_PORT: 9991
+
   ########################################################################
   broker-2:
   ########################################################################
@@ -101,6 +109,27 @@ services:
     volumes:
       - ./kafka-connect-spooldir:/usr/share/java/kafka-connect-spooldir
       - ./sqream-jdbc:/usr/share/java/kafka-connect-jdbc/sqream
+  ################################################################################################
+  control-center:
+  ################################################################################################
+    image: confluentinc/cp-enterprise-control-center
+    hostname: control-center
+    depends_on:
+      - zookeeper
+      - broker-1
+      - broker-2
+      - schema-registry
+      - connect
+    ports:
+      - "9021:9021"
+    environment:
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: "broker-1:29092,broker-2:29092"
+      CONTROL_CENTER_ZOOKEEPER_CONNECT: "zookeeper:32181"
+      CONTROL_CENTER_CONNECT_CLUSTER: "connect:8083"
+      CONTROL_CENTER_REPLICATION_FACTOR: 1
+      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
+      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
+      PORT: 9021
 ##########################################################################################
 networks:
 ##########################################################################################
