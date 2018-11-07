@@ -58,10 +58,10 @@ Create _Docker_ local network:
 `docker network create kafka-cluster`  
 `docker-compose up`  
 This command will start the mentioned below containers: 
-- 1 _zookeeper_
-- 2 _kafka_ brokers (broker-1, broker-2) 
-- _schema registry_ 
-- _kafka connect_ 
+- 1 _zookeeper_: on localhost:2181
+- 2 _kafka_ brokers: broker-1 on localhost:9092, broker-2 on localhost:9093 
+- _schema registry_ : on localhost:8081
+- _kafka connect_ : on localhost:8083
 
 Use [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md) file to test running containers functionality.  
 
