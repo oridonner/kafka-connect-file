@@ -94,7 +94,8 @@ Create _SpoolDir Source Connector_ via REST API call to _kafka connect_ listens 
     "csv.first.row.as.header": "false"
   }
 }'`  
-Pay attention to the fact that input.path,finished.path,error.path are inside _Kafka Connect_ container.  
+
+input.path,finished.path,error.path are pointing to folders inside _Kafka Connect_ container.  
 
 Check if connector was created:  
 `curl localhost:8083/connectors | jq`  
