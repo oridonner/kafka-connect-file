@@ -101,7 +101,7 @@ services:
     volumes:
       - ./kafka-connect-spooldir:/usr/share/java/kafka-connect-spooldir
       - ./sqream-jdbc:/usr/share/java/kafka-connect-jdbc/sqream
-      - ./data/tpch:/tmp/input
+      - ./data/tpch:/tmp/source
       - ./data/finish:/tmp/finish
       - ./data/error:/tmp/error
 ##########################################################################################
