@@ -17,7 +17,7 @@ Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/ka
 Copy latest **SqreamJDBC.jar** to to local **libs/sqream-jdbc**  
 
 
-### _Confluent Monitoring Interceptors_  
+### _Confluent Monitoring Interceptors_ package
 Copy **monitoring-interceptors-5.0.0.jar** to local **libs/monitoring-interceptors** folder from **confluent-5.0.0/share/java/monitoring-interceptors/** folder. _Confluent Platform_ cand be downloaded from [here](https://www.confluent.io/download/).  
 
 # Create _TPCH_ sample data
