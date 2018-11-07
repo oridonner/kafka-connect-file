@@ -18,7 +18,7 @@ Copy latest **SqreamJDBC.jar** to to local **libs/sqream-jdbc**
 
 
 ### _Confluent Monitoring Interceptors_ package
-Copy **monitoring-interceptors-5.0.0.jar** to local **libs/monitoring-interceptors** folder from **confluent-5.0.0/share/java/monitoring-interceptors/** folder. _Confluent Platform_ cand be downloaded from [here](https://www.confluent.io/download/).  
+Copy **monitoring-interceptors-5.0.0.jar** from _Confluent Platform_ (can be downloaded from [here](https://www.confluent.io/download/)) to local **libs/monitoring-interceptors** folder from **confluent-5.0.0/share/java/monitoring-interceptors/** folder.  
 
 # Create _TPCH_ sample data
 Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
