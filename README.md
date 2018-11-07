@@ -11,10 +11,14 @@ Clone project:
 Build package with _Maven_:  
 `mvn clean package -DskipTests`  
 
-Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/** to local **kafka_2.11-2.0.0/libs**  
+Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/** to local **libs/kafka-connect-spooldir** folder.    
 
 ### _SQream JDBC Driver_ package
 Copy latest **SqreamJDBC.jar** to to local **kafka_2.11-2.0.0/libs**  
+
+
+### _Confluent Monitoring Interceptors_  
+Copy **monitoring-interceptors-5.0.0.jar** to local **libs/monitoring-interceptors** folder from **confluent-5.0.0/share/java/monitoring-interceptors/** folder. _Confluent Platform_ cand be downloaded from [here](https://www.confluent.io/download/).  
 
 # Create _TPCH_ sample data
 Create 1 GB of _TPCH_ customer table. Full _dbgen_ instructions available [here](https://github.com/electrum/tpch-dbgen).  
