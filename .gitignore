@@ -2,6 +2,7 @@
 **/*.*.swp
 **/*.log
 **/logs
-**/sqream_storage/
-**/data/sqream_storage/
-data/
+data/sqream_storage/
+data/source/
+data/finish/
+data/error/
