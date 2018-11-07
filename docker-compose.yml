@@ -10,8 +10,6 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_TICK_TIME: 2000
-#      KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
-#      KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
   ###########################################################################
   broker-1:
   ###########################################################################
@@ -32,8 +30,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
- #     KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
- #     KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker-1:29092
       CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
@@ -58,13 +54,10 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
-  #    KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
-  #    KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker-2:29092
       CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
       CONFLUENT_METRICS_ENABLE: 'true'
-      CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
   #########################################################################
   schema-registry:
   #########################################################################
@@ -80,18 +73,6 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://broker-1:29092,PLAINTEXT://broker-2:29092
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
-  ##########################################################################
-  schema-registry-ui:
-  ##########################################################################
-    image: landoop/schema-registry-ui
-    hostname: schema-registry-ui
-    depends_on:
-      - schema-registry
-    ports:
-      - "8000:8000"
-    environment:
-      SCHEMAREGISTRY_URL: 'http://schema-registry:8081'
-      PROXY: "true"
   ######################################################################################################
   connect:
   ######################################################################################################
@@ -125,8 +106,9 @@ services:
       CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
       CONNECT_PLUGIN_PATH: /usr/share/java,/etc/kafka-connect/jars
     volumes:
-      - ./kafka-connect-spooldir:/usr/share/java/kafka-connect-spooldir
-      - ./sqream-jdbc:/usr/share/java/kafka-connect-jdbc/sqream
+      - ./libs/kafka-connect-spooldir:/usr/share/java/kafka-connect-spooldir
+      - ./libs/sqream-jdbc:/usr/share/java/kafka-connect-jdbc/sqream
+      - ./libs/monitoring-interceptors:/usr/share/java/monitoring-interceptors
       - ./data/tpch:/tmp/source
       - ./data/finish:/tmp/finish
       - ./data/error:/tmp/error
