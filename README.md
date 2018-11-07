@@ -63,10 +63,7 @@ This command will start the mentioned below containers:
 - _schema registry_ 
 - _kafka connect_ 
 
-Use [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md) file to test running containers functionality.
-
-
-For debugging reasons it is recommended to start _SQream_ container manualy, and not automatically from the docker-compose file.
+Use [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md) file to test running containers functionality.  
 
 ### Create _SpoolDir Source Connector_
 Before starting the connector check existing topics:  
