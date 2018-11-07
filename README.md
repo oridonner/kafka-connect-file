@@ -57,7 +57,16 @@ _Terminal 1:_  Prepare sqream db to get data from kafka topic, create tables on 
 Create _Docker_ local network:   
 `docker network create kafka-cluster`  
 `docker-compose up`  
-This command will start _sqreamd_, _zookeeper_, 2 _kafka_ brokers (broker-1, broker-2), _schema registry_, _kafka connect_. You can test _kafka cluster_ using this [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md)  
+This command will start the mentioned below containers: 
+- 1 _zookeeper_
+- 2 _kafka_ brokers (broker-1, broker-2) 
+- _schema registry_ 
+- _kafka connect_ 
+
+Use [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md) file to test running containers functionality.
+
+
+For debugging reasons it is recommended to start _SQream_ container manualy, and not automatically from the docker-compose file.
 
 ### Create _SpoolDir Source Connector_
 Before starting the connector check existing topics:  
@@ -67,6 +76,7 @@ If **customer** topic exists, delete it:
 `docker run --net=kafka-cluster --rm confluentinc/cp-kafka:5.0.0 kafka-topics --zookeeper zookeeper:32181 --delete --topic customer` 
  
 Create _SpoolDir Source Connector_ via REST API call to _kafka connect_ listens on 8083 port:  
+
 `curl -i -X POST -H "Accept:application/json" \
     -H  "Content-Type:application/json" http://localhost:8083/connectors/ \
     -d '{
@@ -86,6 +96,7 @@ Create _SpoolDir Source Connector_ via REST API call to _kafka connect_ listens 
     "csv.first.row.as.header": "false"
   }
 }'`  
+Pay attention to the fact that input.path,finished.path,error.path are inside _Kafka Connect_ container.  
 
 Check if connector was created:  
 `curl localhost:8083/connectors | jq`  
