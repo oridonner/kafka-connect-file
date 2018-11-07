@@ -1,8 +1,19 @@
+---
 version: '2'
 services:
-  ############################################################################
+  ######################################################################
+  #sqreamd:
+  ######################################################################
+  #  image: sqream:2.15-dev
+  #  ports:
+  #    - "5000:5000"
+  #  volumes:
+  #    - ./data:/mnt
+  #    - ./scripts:/home/sqream/scripts
+  #  command: ./sqream/build/sqreamd
+  ######################################################################
   zookeeper:
-  ############################################################################
+  ######################################################################
     image: confluentinc/cp-zookeeper:5.0.0
     hostname: zookeeper
     ports:
@@ -10,13 +21,10 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 32181
       ZOOKEEPER_TICK_TIME: 2000
-#      KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
-#      KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
-  ###########################################################################
+  #######################################################################
   broker-1:
-  ###########################################################################
-    image: confluentinc/cp-enterprise-kafka:5.0.0
-    hostname: broker
+  #######################################################################
+    image: confluentinc/cp-kafka:5.0.0
     depends_on:
       - zookeeper
     ports:
@@ -27,44 +35,44 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://broker-1:29092,EXTERNAL://:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker-1:29092,EXTERNAL://:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFK_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
- #     KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
- #     KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker-1:29092
       CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181
-      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
+      CONFLUENT_METRICS_REPORTER_TOPIC_CREATE: "false"
       CONFLUENT_METRICS_ENABLE: "true"
-  ##############################################################################
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
+      #CONFLUENT_METRICS_REPORTER_MAX_REQUEST_SIZE: 10485760
+      #KAFKA_JMX_PORT: 9991
+
+  ########################################################################
   broker-2:
-  #############################################################################
-    image: confluentinc/cp-enterprise-kafka:5.0.0
-    hostname: broker
+  ########################################################################
+    image: confluentinc/cp-kafka:5.0.0
     depends_on:
       - zookeeper
     ports:
       - "9093:9093"
     environment:
       KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:32181'
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
       KAFKA_LISTENERS: PLAINTEXT://broker-2:29092,EXTERNAL://:9093
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker-2:29092,EXTERNAL://:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFK_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
-  #    KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
-  #    KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
+      #CONFLUENT_METRICS_REPORTER_TOPIC_CREATE: "false"
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker-2:29092
       CONFLUENT_METRICS_REPORTER_ZOOKEEPER_CONNECT: zookeeper:32181
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 2
       CONFLUENT_METRICS_ENABLE: 'true'
-      CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
+      #KAFKA_DELETE_TOPIC_ENABLE: "true"
   #########################################################################
   schema-registry:
   #########################################################################
@@ -80,18 +88,6 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://broker-1:29092,PLAINTEXT://broker-2:29092
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: 'GET,POST,PUT,OPTIONS'
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: '*'
-  ##########################################################################
-  schema-registry-ui:
-  ##########################################################################
-    image: landoop/schema-registry-ui
-    hostname: schema-registry-ui
-    depends_on:
-      - schema-registry
-    ports:
-      - "8000:8000"
-    environment:
-      SCHEMAREGISTRY_URL: 'http://schema-registry:8081'
-      PROXY: "true"
   ######################################################################################################
   connect:
   ######################################################################################################
@@ -127,12 +123,9 @@ services:
     volumes:
       - ./kafka-connect-spooldir:/usr/share/java/kafka-connect-spooldir
       - ./sqream-jdbc:/usr/share/java/kafka-connect-jdbc/sqream
-      - ./data/tpch:/tmp/source
-      - ./data/finish:/tmp/finish
-      - ./data/error:/tmp/error
-  ##########################################################################
+  ################################################################################################
   control-center:
-  ##########################################################################
+  ################################################################################################
     image: confluentinc/cp-enterprise-control-center:5.0.0
     hostname: control-center
     depends_on:
@@ -145,14 +138,17 @@ services:
       - "9021:9021"
     environment:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: broker-1:29092,broker-2:29092
-      CONTROL_CENTER_ZOOKEEPER_CONNECT: zookeeper:32181
       CONTROL_CENTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONTROL_CENTER_ZOOKEEPER_CONNECT: zookeeper:32181
       CONTROL_CENTER_CONNECT_CLUSTER: connect:8083
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
+
+
+
 ##########################################################################################
 networks:
 ##########################################################################################
