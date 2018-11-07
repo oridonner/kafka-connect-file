@@ -14,7 +14,7 @@ Build package with _Maven_:
 Copy **jar** files from **target/kafka-connect-target/usr/share/kafka-connect/kafka-connect-spooldir/** to local **libs/kafka-connect-spooldir** folder.    
 
 ### _SQream JDBC Driver_ package
-Copy latest **SqreamJDBC.jar** to to local **kafka_2.11-2.0.0/libs**  
+Copy latest **SqreamJDBC.jar** to to local **libs/sqream-jdbc**  
 
 
 ### _Confluent Monitoring Interceptors_  
