@@ -62,6 +62,7 @@ This command will start the mentioned below containers:
 - 2 _kafka_ brokers: broker-1 on localhost:9092, broker-2 on localhost:9093 
 - _schema registry_ : on localhost:8081
 - _kafka connect_ : on localhost:8083
+- _Confluent Control Center_: on localhost:9021
 
 Use [tests](http://gitlab.sq.l/DataOps/file-sqream-pipeline/blob/docker-compose/tests.md) file to test running containers functionality.  
 
